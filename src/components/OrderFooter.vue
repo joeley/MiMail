@@ -1,8 +1,8 @@
 <template>
-    <div>order-pay</div>
+    <div>order-footer</div>
 </template>
 <script>
 export default {
-    name:'order-pay'
+    name:'order-footer'
 }
 </script>
