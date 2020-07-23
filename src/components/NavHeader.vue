@@ -58,7 +58,11 @@
           </div>
           <div class="item-menu">
             <span>电视</span>
-            <div class="children"></div>
+            <div class="children">
+              <ul>
+              </ul>
+            
+            </div>
           </div>
         </div>
         <div class="header-search">
@@ -99,7 +103,6 @@ export default {
           if(res.list.length>6){  
             this.phoneList = res.list.slice(0,6);
           }
-          console.log(this.phoneList)
       })
     },
     goToCart(){
@@ -126,6 +129,9 @@ export default {
     line-height: 39px;
     background-color: hsl(0, 0%, 20%);
     color: #b0b0b0;
+    a:hover {
+      color: #ffffff !important;
+    }
     .container {
       @include flex();
       a {
@@ -206,6 +212,7 @@ export default {
             left: 0;
             width: 1226px;
             box-shadow: 0px 7px 6px 0px #0000001c;
+            background-color: #ffffff;
             z-index: 10;
             overflow: hidden;
             transition: all .5s ease;
@@ -215,7 +222,6 @@ export default {
               font-size: 12px;
               text-align: center;
               line-height: 12px;
-              background-color: #ffffff;
               position: relative;
               a {
                 display: inline-block;
