@@ -1,6 +1,9 @@
 <template>
-  <div class="footer">
-    <div class="footer-logo">
+  <div class="footer" :class="[footerType == '2'?'login-footer':'']">
+    <div 
+      class="footer-logo"
+      v-if="footerType == '1'"  
+    >
       <img src="/imgs/logo-footer.png" alt="">
       <p>小米商城</p>
     </div>             
@@ -15,22 +18,30 @@
 </template>
 <script>
   export default{
-    name:'nav-footer'
+    name:'nav-footer',
+    props:{
+      footerType:{
+        type:String,
+        default:'1'
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>
   .footer{
-    height:234px;
+    // height:234px;
     border-top:4px solid #FF6600;
     background-color:#333333;
     color:#999999;
     font-size:16px;
     text-align:center;
+    padding-top: 30px;
+    padding-bottom: 10px;
     a:hover{
         color: #FF6600;
     }
     .footer-logo{
-      margin-top:46px;
+      margin-top:0px;
       margin-bottom:31px;
       img{
         width:53px;
@@ -58,5 +69,9 @@
         color:#FF6600;
       }
     }
+  }
+  .login-footer{
+    border-top:none;
+    background-color: #ffffff;
   }
 </style>

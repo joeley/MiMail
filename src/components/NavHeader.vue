@@ -16,7 +16,7 @@
 
           <a href="javascript:;" class="my-cart">
             <span class="icon-cart"></span>
-            购物车
+            购物车({{cartCount}})
           </a>
         </div>
       </div>
@@ -39,7 +39,7 @@
                   <a :href="'/product/'+item.id" target="_blank">
                     <div class="pro-img">
                       <img
-                        :src="item.mainImage"
+                        v-lazy="item.mainImage"
                         :alt="item.subtitle"
                         srcset
                       />
@@ -76,13 +76,22 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex'
 export default {
   name: "nav-header",
   data(){
     return{
-      username:'joe', 
       phoneList:[]
     }
+  },
+  computed:{
+    ...mapState(['username','cartCount']),
+    // username(){
+    //   return this.$store.state.username;
+    // },
+    // cartCount(){
+    //   return this.$store.state.cartCount;
+    // }
   },
   filters:{
     currency(val){
