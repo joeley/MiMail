@@ -50,7 +50,8 @@
         <swiper v-bind:options="swiperOption">
           <swiper-slide v-for="(item, index) in slideList" :key="index">
             <a :href="'/product/'+item.id">
-              <img v-lazy="item.img" />
+              <img :src="item.img"  v-show="index == 0 || index == slideList.length-1"/>
+              <img v-lazy="item.img" alt="" v-show="index !== 0 && index !== slideList.length-1">
             </a>
           </swiper-slide>
           <!-- Optional controls -->
@@ -156,12 +157,8 @@ export default {
           img: "/imgs/slider/slide-3.jpg",
         },
         {
-          id: "",
+          id: "46",
           img: "/imgs/slider/slide-4.jpg",
-        },
-        {
-          id: "",
-          img: "/imgs/slider/slide-1.jpg",
         },
       ],
       menuList: [
@@ -244,19 +241,25 @@ export default {
     closeModal(){
       this.showModal=false;
     },
-    addCart() {
-      this.showModal = true;
-      // this.axios
-      //   .post("/carts", {
-      //     poductId: id,
-      //     selected: true,
-      //   })
-      //   .then((res) => {
-      //     res;
-      //   })
-      //   .catch(() => {
-      //     this.showModal = true;
-      //   });
+    addCart(id) {
+      // this.showModal = true;
+      // this.$store.dispatch("saveCartCount", ++this.$store.state.cartCount)
+      this.axios
+        .post("/carts", {
+          productId: 40, 
+          selected: true
+        })
+        .then((res) => {
+          this.showModal = true;
+          this.$store.dispatch("saveCartCount", res.cartTotalQuantity)
+          
+        })
+        .catch((res) => {
+          // this.showModal = true;
+          console.log(res);
+          console.log(id)
+
+        });
     },
   },
 };
@@ -454,3 +457,4 @@ export default {
   }
 }
 </style>
+

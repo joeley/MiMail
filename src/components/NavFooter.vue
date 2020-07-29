@@ -9,7 +9,7 @@
     </div>             
     <div class="footer-link">
       <a href="https://www.notion.so/joeley/Joe-s-show-note-b9e27894bb424f008e4665b3066eead6" target="_blank">李哲前端绘制</a><span>|</span>
-      <a href="" target="_blank">杨赞后端支持</a><span>|</span>
+      <a href="http://yangzan.top/" target="_blank">杨赞后端支持</a><span>|</span>
       <a href="" target="_blank">广告位1招商</a><span>|</span>
       <a href="" target="_blank">广告位2招商</a>
     </div>

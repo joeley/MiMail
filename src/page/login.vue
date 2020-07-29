@@ -55,8 +55,12 @@ export default {
         password
       }).then((res)=>{
         this.$cookie.set('userId',res.id,{expires:'Session'});
+        //this.$cookie.set('userId',res.id,{expires:'1M'});
         //this.$store.dispatch('saveUserName',res.username);
         this.saveUserName(res.username);
+        this.axios.get('/carts/products/sum').then((res)=>{
+          this.$store.dispatch('saveCartCount', res)
+        });
         this.$router.push({
           name:'index',
           params:{
@@ -65,7 +69,7 @@ export default {
         });
       })
     },
-    ...mapActions(['saveUserName']),
+    ...mapActions(['saveUserName','saveCartCount']),
     register(){
       this.axios.post('/user/register',{
         username:'admin1',

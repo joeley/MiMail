@@ -10,13 +10,14 @@
         </div>
         <div class="topbar-user">
           <a href="javascript:;" v-if="username">{{username}}</a>
+          <a href="javascript:;" v-if="username" @click="loginOut">退出</a>
           <a href="javascript:;" v-if="username" @click="goToCart">我的订单</a>
           <a href="javascript:;" v-if="!username" @click="login">登录</a>
           <a href="javascript:;" v-if="!username">注册</a>
 
           <a href="javascript:;" class="my-cart">
             <span class="icon-cart"></span>
-            购物车({{cartCount}})
+            购物车{{cartCount?'('+cartCount+')':''}}
           </a>
         </div>
       </div>
@@ -76,7 +77,7 @@
   </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapActions} from 'vuex'
 export default {
   name: "nav-header",
   data(){
@@ -100,6 +101,7 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['saveUserName','saveCartCount']),
     getProductList(){
       this.axios.get('/products',{
         params:{
@@ -107,7 +109,6 @@ export default {
           // pageSize:6
         }
       }).then((res)=>{
-          
           res.list.sort(()=>(Math.random()-0.5));
           if(res.list.length>6){  
             this.phoneList = res.list.slice(0,6);
@@ -119,6 +120,18 @@ export default {
     },
     login(){
       this.$router.push("/login");
+    },
+    loginOut(){
+      this.axios.post('/user/logout').then(()=>{
+        this.$message.success({
+          message:'退出成功',
+          center:true
+        });
+        this.$cookie.set("userId",'',{expires:'-1'});
+        //this.$store.dispatch('saveUserName',res.username);
+        this.saveUserName('');
+        this.saveCartCount('');
+      });
     }
   },
   mounted(){
