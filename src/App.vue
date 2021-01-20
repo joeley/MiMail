@@ -6,7 +6,6 @@
 
 <script>
 
-// import jsonp from 'jsonp' 
 export default {
   name: 'App',
   data(){
@@ -29,7 +28,6 @@ export default {
     getUserInfo(){
       this.axios.get('/user').then((res)=>{
         this.$store.dispatch("saveUserName", res.username)
-        // 异步的执行，所以渲染不上，使用computed方法
       })
     },
     getCartCount(){

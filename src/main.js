@@ -1,14 +1,17 @@
 import Vue from 'vue'
 import store from './store'
-import router from './router'
+// import router from './router'
 import axios from 'axios'
+// import Router from 'vue-router'
+import router from './router/index'
 import VueAxios from 'vue-axios'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
+
 import { Message } from 'element-ui'
 import 'element-ui/lib/theme-chalk/message.css'
-import App from './App.vue'
 
+import App from './App.vue'
 
 
 Vue.use(VueAxios,axios);
@@ -17,6 +20,8 @@ Vue.use(VueLazyLoad,{
 });
 Vue.use(VueCookie);
 Vue.prototype.$message = Message;
+
+
 
 axios.defaults.baseURL = '/api';  
 axios.defaults.timeout = 8000; 
